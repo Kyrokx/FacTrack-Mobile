@@ -1,3 +1,4 @@
+import 'package:factrack_mobile/features/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dashboard_provider.dart';
@@ -31,6 +32,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
           style: TextStyle(color: Color(0xFF1E3A5F), fontWeight: FontWeight.bold),
         ),
         centerTitle: false,
+        actions: [
+          ElevatedButton(onPressed: (){
+            AuthService.logout().then((_) {
+              Navigator.of(context).pushReplacementNamed('/login');
+            });
+          }, child: Icon(Icons.logout)),
+        ],
       ),
       body: provider.loading
           ? const Center(child: CircularProgressIndicator(color: Color(0xFF1E3A5F)))

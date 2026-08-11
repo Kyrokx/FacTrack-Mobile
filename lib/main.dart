@@ -1,13 +1,20 @@
+import 'package:factrack_mobile/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'core/app_theme.dart';
+import 'core/utils/custom_loading.dart';
 import 'features/auth/auth_provider.dart';
 import 'features/auth/login_screen.dart';
 import 'features/auth/register_screen.dart';
 import 'features/dashboard/dashboard_provider.dart';
-import 'features/dashboard/dashboard_screen.dart';
+import 'features/setup/setup_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
+
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
@@ -26,15 +33,11 @@ class FacTrackApp extends StatelessWidget {
     return MaterialApp(
       title: 'FacTrack',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Roboto',
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E3A5F)),
-      ),
+      theme: AppTheme.defaultTheme,
       home: const AuthGate(),
       routes: {
         '/login': (_) => const LoginScreen(),
         '/register': (_) => const RegisterScreen(),
-        '/home': (_) => const DashboardScreen(),
       },
     );
   }
@@ -49,16 +52,14 @@ class AuthGate extends StatelessWidget {
 
     switch (auth.status) {
       case AuthStatus.unknown:
-        return const Scaffold(
-          backgroundColor: Color(0xFFF0F4F8),
-          body: Center(
-            child: CircularProgressIndicator(color: Color(0xFF1E3A5F)),
-          ),
-        );
-      case AuthStatus.authenticated:
-        return const DashboardScreen();
+        return CustomLoading();
       case AuthStatus.unauthenticated:
         return const LoginScreen();
+      case AuthStatus.authenticated:
+        if (!auth.hasOrganization) {
+          return const SetupScreen();
+        }
+        return const MainScreen();
     }
   }
 }

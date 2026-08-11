@@ -6,6 +6,7 @@ enum AuthStatus { unknown, authenticated, unauthenticated }
 
 class AuthProvider extends ChangeNotifier {
   AuthStatus status = AuthStatus.unknown;
+  bool get hasOrganization => user?['has_organization'] == true;
   Map<String, dynamic>? user;
   String? error;
 
@@ -30,14 +31,18 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> login(String username, String password) async {
     error = null;
+    status = AuthStatus.unknown;
+    notifyListeners();
+
     try {
-      final data = await AuthService.login(username, password);
+      await AuthService.login(username, password);
       user = await AuthService.getMe();
       status = AuthStatus.authenticated;
       notifyListeners();
       return true;
     } catch (_) {
       error = 'Identifiants invalides.';
+      status = AuthStatus.unauthenticated;
       notifyListeners();
       return false;
     }
@@ -63,5 +68,12 @@ class AuthProvider extends ChangeNotifier {
     user = null;
     status = AuthStatus.unauthenticated;
     notifyListeners();
+  }
+
+  Future<void> refreshUser() async {
+    try {
+      user = await AuthService.getMe();
+      notifyListeners();
+    } catch (_) {}
   }
 }
