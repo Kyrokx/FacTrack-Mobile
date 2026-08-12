@@ -3,6 +3,8 @@ import 'package:factrack_mobile/features/dashboard/dashboard_screen.dart';
 import 'package:factrack_mobile/features/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../features/organization/organization_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -16,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = const [
     DashboardScreen(),
     BillsScreen(),
-    OrganizationTab(),
+    OrganizationScreen(),
     ProfileScreen(),
   ];
 
@@ -56,11 +58,4 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
-}
-
-// Tabs temporaires
-class OrganizationTab extends StatelessWidget {
-  const OrganizationTab({super.key});
-  @override
-  Widget build(BuildContext context) => const Center(child: Text('Mon Foyer'));
 }

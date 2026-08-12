@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88b848e2-20d7-4ed0-9458-671452083ca8" name="Changes" comment="add profile screen and related components; implement action button, info row, and section card">
-      <change afterPath="$PROJECT_DIR$/lib/features/bills/bill_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/bills/bill_provider.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/bills/bill_service.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/bills/bills_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/bill_card.dart" afterDir="false" />
+    <list default="true" id="88b848e2-20d7-4ed0-9458-671452083ca8" name="Changes" comment="add bill management features; implement bill model, provider, service, and UI components">
+      <change afterPath="$PROJECT_DIR$/lib/core/utils/snackbar_helper.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/organization/membership_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/organization/organization_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/organization/organization_provider.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/organization/organization_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/organization/organization_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/auth_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/auth_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/utils/custom_loading.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/utils/custom_loading.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/bottom_nav.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/bottom_nav.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/info_row.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/info_row.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786500643537</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add bill management features; implement bill model, provider, service, and UI components">
+      <option name="closed" value="true" />
+      <created>1786559573240</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1786559573240</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,17 +169,7 @@
     <MESSAGE value="add setup functionality and UI for organization management; update theme and loading components" />
     <MESSAGE value="refactor dashboard screen and add new stat card components; improve theme usage and loading behavior" />
     <MESSAGE value="add profile screen and related components; implement action button, info row, and section card" />
-    <option name="LAST_COMMIT_MESSAGE" value="add profile screen and related components; implement action button, info row, and section card" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/widgets/bottom_nav.dart</url>
-          <line>60</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="add bill management features; implement bill model, provider, service, and UI components" />
+    <option name="LAST_COMMIT_MESSAGE" value="add bill management features; implement bill model, provider, service, and UI components" />
   </component>
 </project>

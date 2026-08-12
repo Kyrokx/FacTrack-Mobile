@@ -5,12 +5,15 @@ class InfoRow extends StatelessWidget {
   final String label;
   final String value;
   final Widget? valueWidget;
+  final Widget? trailing;
 
-  const InfoRow({super.key,
+  const InfoRow({
+    super.key,
     required this.icon,
     required this.label,
     required this.value,
     this.valueWidget,
+    this.trailing,
   });
 
   @override
@@ -29,6 +32,7 @@ class InfoRow extends StatelessWidget {
             ],
           ),
         ),
+        if (trailing != null) trailing!,
       ],
     );
   }

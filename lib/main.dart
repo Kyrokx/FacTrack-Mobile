@@ -9,6 +9,7 @@ import 'features/auth/login_screen.dart';
 import 'features/auth/register_screen.dart';
 import 'features/bills/bill_provider.dart';
 import 'features/dashboard/dashboard_provider.dart';
+import 'features/organization/organization_provider.dart';
 import 'features/setup/setup_screen.dart';
 
 void main() {
@@ -21,6 +22,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => DashboardProvider()),
         ChangeNotifierProvider(create: (_) => BillProvider()),
+        ChangeNotifierProvider(create: (_) => OrganizationProvider()),
       ],
       child: const FacTrackApp(),
     ),
