@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/utils/custom_loading.dart';
 import '../../core/utils/snackbar_helper.dart';
-import '../../widgets/action_button.dart';
 import '../../widgets/info_row.dart';
-import '../../widgets/profile_header.dart';
 import '../../widgets/role_badge.dart';
 import '../../widgets/section_card.dart';
 import '../auth/auth_provider.dart';
@@ -22,17 +20,24 @@ class _OrganizationScreenState extends State<OrganizationScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      final provider = context.read<OrganizationProvider>();
-      provider.addListener(() {
-        if (provider.error != null) {
-          showErrorSnackBar(context, provider.error!);
-          provider.clearError(); // on reset l'erreur après affichage
-        }
-      });
-      provider.load();
-      provider.loadMembers();
-    });
+    final provider = context.read<OrganizationProvider>();
+    provider.addListener(_onProviderChange);
+    provider.load();
+    provider.loadMembers();
+  }
+
+  void _onProviderChange() {
+    final provider = context.read<OrganizationProvider>();
+    if (provider.error != null) {
+      showErrorSnackBar(context, provider.error!);
+      provider.clearError();
+    }
+  }
+
+  @override
+  void dispose() {
+    context.read<OrganizationProvider>().removeListener(_onProviderChange);
+    super.dispose();
   }
 
   @override
@@ -57,8 +62,13 @@ class _OrganizationScreenState extends State<OrganizationScreen> {
           : organization.organization == null
           ? const Center(child: Text('Aucun foyer [ERREUR CRITIQUE].'))
           : RefreshIndicator(
-              onRefresh: () =>
-                  context.read<OrganizationProvider>().load(force: true),
+              onRefresh: () async {
+                if (context.mounted) {
+                  final provider = context.read<OrganizationProvider>();
+                  await provider.load(force: true);
+                  await provider.loadMembers(force: true);
+                }
+              },
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
@@ -88,7 +98,7 @@ class _OrganizationScreenState extends State<OrganizationScreen> {
                         label: 'Code d\'invitation',
                         value: org?.inviteCode ?? '-',
                         trailing: TextButton.icon(
-                          onPressed: () async {
+                          onPressed: organization.inviteCodeLoading ? null : () async {
                             final confirm = await showDialog<bool>(
                               context: context,
                               builder: (ctx) => AlertDialog(

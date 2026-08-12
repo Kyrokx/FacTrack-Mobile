@@ -4,11 +4,20 @@ import 'bill_service.dart';
 
 class BillProvider extends ChangeNotifier {
   List<Bill> _bills = [];
-  bool loading = false;
-  String? error;
+  bool _loading = false;
+  String? _error;
+
+  bool get loading => _loading;
+  String? get error => _error;
+
 
   // Filtre actuel
   String? typeFilter; // 'SONABEL', 'ONEA', ou null pour tout
+
+  void clearError() {
+    _error = null;
+    notifyListeners();
+  }
 
   List<Bill> get bills {
     if (typeFilter == null) return _bills;
@@ -18,16 +27,16 @@ class BillProvider extends ChangeNotifier {
   Future<void> load({bool force = false}) async {
     if (_bills.isNotEmpty && !force) return;
 
-    loading = true;
-    error = null;
+    _loading = true;
+    _error = null;
     notifyListeners();
 
     try {
       _bills = await BillService.getBills();
     } on Exception catch (e) {
-      error = e.toString().replaceAll('Exception: ', '');
+      _error = e.toString().replaceAll('Exception: ', '');
     } finally {
-      loading = false;
+      _loading = false;
       notifyListeners();
     }
   }
@@ -56,7 +65,7 @@ class BillProvider extends ChangeNotifier {
         notifyListeners();
       }
     } on Exception catch (e) {
-      error = e.toString().replaceAll('Exception: ', '');
+      _error = e.toString().replaceAll('Exception: ', '');
       notifyListeners();
     }
   }
@@ -67,7 +76,7 @@ class BillProvider extends ChangeNotifier {
       _bills.removeWhere((b) => b.id == id);
       notifyListeners();
     } on Exception catch (e) {
-      error = e.toString().replaceAll('Exception: ', '');
+      _error = e.toString().replaceAll('Exception: ', '');
       notifyListeners();
     }
   }
