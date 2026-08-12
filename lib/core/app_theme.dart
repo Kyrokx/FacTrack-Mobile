@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+class AppColors {
+  static const success = Color(0xFF16A34A);
+  static const warning = Color(0xFFD97706);
+  static const info = Color(0xFF2563EB);
+}
+
 class AppTheme {
-  static const Color _primary = Color(0xFF2A5CAA);
+  /*static const Color _primary = Color(0xFF2A5CAA);
   static const Color _accent = Color(0xFF4CAF50);
   static const Color _neutral = Color(0xFF424242);
 
@@ -9,7 +16,17 @@ class AppTheme {
   static const Color _errorRed = Color(0xFFEF4444);
   static const Color _warningYellow = Color(0xFFFFC107);
 
-  static const Color _scaffoldLight = Color(0xFFF5F5F5);
+  static const Color _scaffoldLight = Color(0xFFF5F5F5);*/
+
+  static const Color _primary = Color(0xFF111111);
+  static const Color _accent = Color(0xFF2A2A2A);
+  static const Color _neutral = Color(0xFF737373);
+
+  static const Color _text = Color(0xFF171717);
+  static const Color _errorRed = Color(0xFFDC2626);
+  static const Color _warningYellow = Color(0xFFD97706);
+
+  static const Color _scaffoldLight = Color(0xFFF7F7F7);
 
   // --- DEFAULTMODE (Light Mode) ---
   static ThemeData get defaultTheme {

@@ -50,16 +50,18 @@ class AuthGate extends StatelessWidget {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
 
-    switch (auth.status) {
-      case AuthStatus.unknown:
-        return CustomLoading();
-      case AuthStatus.unauthenticated:
-        return const LoginScreen();
-      case AuthStatus.authenticated:
-        if (!auth.hasOrganization) {
-          return const SetupScreen();
-        }
-        return const MainScreen();
+    if (auth.status == AuthStatus.unknown) {
+      return const CustomLoading();
     }
+
+    if (auth.status == AuthStatus.unauthenticated) {
+      return const LoginScreen();
+    }
+
+    if (!auth.hasOrganization) {
+      return const SetupScreen();
+    }
+
+    return const MainScreen();
   }
 }

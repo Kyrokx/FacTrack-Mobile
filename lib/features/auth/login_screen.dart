@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/utils/field_validators.dart';
+import '../../main.dart';
 import 'auth_provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -54,7 +55,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
     if (mounted) {
       if (success) {
-        //Navigator.pushReplacementNamed(context, '/home');
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const AuthGate()),
+              (route) => false,
+        );
       }
       setState(() => _loading = false);
     }

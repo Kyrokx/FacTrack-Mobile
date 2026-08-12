@@ -35,12 +35,17 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
+      print('🔄 Login...');
       await AuthService.login(username, password);
+      print('✅ Token saved');
       user = await AuthService.getMe();
+      print('✅ User: $user');
       status = AuthStatus.authenticated;
+      print('✅ Status: authenticated | hasOrg: $hasOrganization');
       notifyListeners();
       return true;
-    } catch (_) {
+    } catch (e) {
+      print('❌ Error: $e');
       error = 'Identifiants invalides.';
       status = AuthStatus.unauthenticated;
       notifyListeners();
