@@ -1,4 +1,5 @@
 import 'package:factrack_mobile/features/dashboard/dashboard_screen.dart';
+import 'package:factrack_mobile/features/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,7 +15,8 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = const [
     DashboardScreen(),
     BillsTab(),
-    ProfileTab(),
+    OrganizationTab(),
+    ProfileScreen(),
   ];
 
   @override
@@ -40,6 +42,11 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Factures',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'Organisation',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             activeIcon: Icon(Icons.person),
             label: 'Profil',
@@ -63,8 +70,8 @@ class BillsTab extends StatelessWidget {
   Widget build(BuildContext context) => const Center(child: Text('Factures'));
 }
 
-class ProfileTab extends StatelessWidget {
-  const ProfileTab({super.key});
+class OrganizationTab extends StatelessWidget {
+  const OrganizationTab({super.key});
   @override
-  Widget build(BuildContext context) => const Center(child: Text('Profil'));
+  Widget build(BuildContext context) => const Center(child: Text('Organisation'));
 }

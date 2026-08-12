@@ -4,20 +4,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88b848e2-20d7-4ed0-9458-671452083ca8" name="Changes" comment="add setup functionality and UI for organization management; update theme and loading components">
-      <change afterPath="$PROJECT_DIR$/lib/features/profile/profile_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/bill_till.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/stat_row.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/stats_card.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/type_stats_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="88b848e2-20d7-4ed0-9458-671452083ca8" name="Changes" comment="refactor dashboard screen and add new stat card components; improve theme usage and loading behavior">
+      <change afterPath="$PROJECT_DIR$/lib/widgets/action_button.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/info_row.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/profile_header.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/role_badge.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/section_card.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/app_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/app_theme.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/auth/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/auth_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/auth_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/dashboard/dashboard_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/dashboard/dashboard_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/dashboard/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/dashboard/dashboard_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/dashboard/dashboard_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/dashboard/dashboard_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/profile/profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/profile/profile_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/bottom_nav.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/bottom_nav.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786425255195</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="refactor dashboard screen and add new stat card components; improve theme usage and loading behavior">
+      <option name="closed" value="true" />
+      <created>1786498750271</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1786498750271</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,6 +148,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initialize project structure and add essential files" />
     <MESSAGE value="add setup functionality and UI for organization management; update theme and loading components" />
-    <option name="LAST_COMMIT_MESSAGE" value="add setup functionality and UI for organization management; update theme and loading components" />
+    <MESSAGE value="refactor dashboard screen and add new stat card components; improve theme usage and loading behavior" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor dashboard screen and add new stat card components; improve theme usage and loading behavior" />
   </component>
 </project>

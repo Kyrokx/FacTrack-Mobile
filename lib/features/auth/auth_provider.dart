@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../../core/api_client.dart';
 import '../../core/storage.dart';
 import 'auth_service.dart';
 
@@ -35,18 +37,13 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      print('🔄 Login...');
       await AuthService.login(username, password);
-      print('✅ Token saved');
       user = await AuthService.getMe();
-      print('✅ User: $user');
       status = AuthStatus.authenticated;
-      print('✅ Status: authenticated | hasOrg: $hasOrganization');
       notifyListeners();
       return true;
-    } catch (e) {
-      print('❌ Error: $e');
-      error = 'Identifiants invalides.';
+    } on Exception catch (e) {
+      error = e.toString().replaceAll('Exception: ', '');
       status = AuthStatus.unauthenticated;
       notifyListeners();
       return false;
@@ -61,18 +58,36 @@ class AuthProvider extends ChangeNotifier {
       status = AuthStatus.authenticated;
       notifyListeners();
       return true;
-    } catch (_) {
-      error = 'Erreur lors de l\'inscription.';
+    } on Exception catch (e) {
+      error = e.toString().replaceAll('Exception: ', '');
       notifyListeners();
       return false;
     }
   }
 
   Future<void> logout() async {
-    await AuthService.logout();
-    user = null;
-    status = AuthStatus.unauthenticated;
-    notifyListeners();
+
+    try {
+      await AuthService.logout();
+      user = null;
+      status = AuthStatus.unauthenticated;
+      notifyListeners();
+    } on Exception catch (e) {
+      error = e.toString().replaceAll('Exception: ', '');
+      notifyListeners();
+    }
+  }
+
+  Future<bool> leaveOrganization() async {
+    try {
+      await ApiClient.dio.post('/organizations/leave/');
+      await refreshUser();
+      return true;
+    } on DioException catch (e) {
+      error = e.response!.data['error'] ?? 'Erreur lors de la sortie.';
+      notifyListeners();
+      return false;
+    }
   }
 
   Future<void> refreshUser() async {

@@ -18,8 +18,8 @@ class DashboardProvider extends ChangeNotifier {
 
     try {
       data = await DashboardService.getDashboard(year: year ?? selectedYear);
-    } catch (e) {
-      error = 'Erreur de chargement.';
+    } on Exception catch (e) {
+      error = e.toString().replaceAll('Exception: ', '');
     } finally {
       loading = false;
       notifyListeners();

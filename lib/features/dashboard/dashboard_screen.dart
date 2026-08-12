@@ -26,8 +26,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     final provider = context.watch<DashboardProvider>();
 
-    return Scaffold(
-      appBar: AppBar(
+    return SafeArea(child:Scaffold(
+      /*appBar: AppBar(
         elevation: 0,
         title: const Text(
           'FacTrack',
@@ -40,7 +40,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             });
           }, child: Icon(Icons.logout)),
         ],
-      ),
+      ),*/
       body: provider.loading
           ? const Center(child: CircularProgressIndicator(color: Color(0xFF1E3A5F)))
           : provider.error != null
@@ -51,6 +51,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         onRefresh: () => context.read<DashboardProvider>().load(force: true),
         child: _DashboardBody(data: provider.data!),
       ),
+    ),
     );
   }
 }
