@@ -1,3 +1,4 @@
+import 'package:factrack_mobile/features/bills/bills_screen.dart';
 import 'package:factrack_mobile/features/dashboard/dashboard_screen.dart';
 import 'package:factrack_mobile/features/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = const [
     DashboardScreen(),
-    BillsTab(),
+    BillsScreen(),
     OrganizationTab(),
     ProfileScreen(),
   ];
@@ -44,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             activeIcon: Icon(Icons.home),
-            label: 'Organisation',
+            label: 'Mon Foyer',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
@@ -58,20 +59,8 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 // Tabs temporaires
-class DashboardTab extends StatelessWidget {
-  const DashboardTab({super.key});
-  @override
-  Widget build(BuildContext context) => const Center(child: Text('Dashboard'));
-}
-
-class BillsTab extends StatelessWidget {
-  const BillsTab({super.key});
-  @override
-  Widget build(BuildContext context) => const Center(child: Text('Factures'));
-}
-
 class OrganizationTab extends StatelessWidget {
   const OrganizationTab({super.key});
   @override
-  Widget build(BuildContext context) => const Center(child: Text('Organisation'));
+  Widget build(BuildContext context) => const Center(child: Text('Mon Foyer'));
 }

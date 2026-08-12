@@ -13,7 +13,11 @@ class AuthService {
       await Storage.saveTokens(response.data['access'], response.data['refresh']);
       return response.data;
     } on DioException catch (e) {
-      final message = e.response?.data['error'] ?? 'Une erreur est survenue.';
+      String message = 'Une erreur est survenue.';
+      final data = e.response?.data;
+      if (data is Map) {
+        message = data['error'] ?? message;
+      }
       throw Exception(message);
     }
   }
