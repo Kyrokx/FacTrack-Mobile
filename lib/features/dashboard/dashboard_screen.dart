@@ -1,5 +1,4 @@
 import 'package:factrack_mobile/core/app_theme.dart';
-import 'package:factrack_mobile/features/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/bill_till.dart';
@@ -138,6 +137,24 @@ class _DashboardBody extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
         ),
         const SizedBox(height: 20),
+
+        /*SectionCard(
+          children: [
+            Text(
+              'Évolution des dépenses',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+            PriceChart(
+              periods: data.pricePeriods,
+              sonabelPrices: data.sonabelPriceChart,
+              oneaPrices: data.oneaPriceChart,
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 20),*/
+
 
         // Dernières factures SONABEL
         _SectionTitle(title: 'Dernières factures SONABEL'),

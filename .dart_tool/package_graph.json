@@ -9,6 +9,7 @@
       "dependencies": [
         "cupertino_icons",
         "dio",
+        "fl_chart",
         "flutter",
         "flutter_secure_storage",
         "go_router",
@@ -48,6 +49,15 @@
       "name": "cupertino_icons",
       "version": "1.0.9",
       "dependencies": []
+    },
+    {
+      "name": "fl_chart",
+      "version": "1.2.0",
+      "dependencies": [
+        "equatable",
+        "flutter",
+        "vector_math"
+      ]
     },
     {
       "name": "go_router",
@@ -519,6 +529,14 @@
       "name": "args",
       "version": "2.7.0",
       "dependencies": []
+    },
+    {
+      "name": "equatable",
+      "version": "2.1.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
     }
   ],
   "configVersion": 1
