@@ -80,4 +80,15 @@ class BillProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> createBill(Map<String, dynamic> data) async {
+    try {
+      final bill = await BillService.createBill(data);
+      _bills.insert(0, bill);
+      notifyListeners();
+    } on Exception catch (e) {
+      _error = e.toString().replaceAll('Exception: ', '');
+      notifyListeners();
+    }
+  }
 }

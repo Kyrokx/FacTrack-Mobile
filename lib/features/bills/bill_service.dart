@@ -30,4 +30,14 @@ class BillService {
       throw Exception(message);
     }
   }
+
+  static Future<Bill> createBill(Map<String, dynamic> data) async {
+    try {
+      final response = await ApiClient.dio.post('/bills/create/', data: data);
+      return Bill.fromJson(response.data);
+    } on DioException catch (e) {
+      final message = e.response?.data['error'] ?? 'Erreur lors de la création.';
+      throw Exception(message);
+    }
+  }
 }

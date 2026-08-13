@@ -10,6 +10,7 @@ class CustomTextField extends StatefulWidget {
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final bool isPassword;
+  final TextInputType keyboardType;
 
   final String? hinText;
   final IconData? suffixIcon;
@@ -25,7 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.onChanged,
     this.validator,
     this.isPassword = false,
-
+    this.keyboardType = TextInputType.text,
     this.hinText,
     this.suffixIcon,
   });
@@ -46,9 +47,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textInputAction: widget.textInputAction,
       onChanged: widget.onChanged,
       obscuringCharacter: "*",
+      keyboardType: widget.keyboardType,
       obscureText: widget.isPassword ? _obscure : false,
       decoration: InputDecoration(
-        hintText: widget.hinText != "" ? widget.hinText.toString() : "",
+        hintText: widget.hinText ?? "",
         prefixIcon: Icon(widget.prefixIcon),
         iconColor: widget.iconColor,
         label: Text(widget.label ?? "", style: TextStyle(color: Colors.grey)),

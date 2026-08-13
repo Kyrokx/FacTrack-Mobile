@@ -17,26 +17,34 @@ class OrganizationScreen extends StatefulWidget {
 }
 
 class _OrganizationScreenState extends State<OrganizationScreen> {
+  late OrganizationProvider _provider;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _provider = context.read<OrganizationProvider>();
+  }
+
   @override
   void initState() {
     super.initState();
-    final provider = context.read<OrganizationProvider>();
-    provider.addListener(_onProviderChange);
-    provider.load();
-    provider.loadMembers();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _provider.addListener(_onProviderChange);
+      _provider.load();
+      _provider.loadMembers();
+    });
   }
 
   void _onProviderChange() {
-    final provider = context.read<OrganizationProvider>();
-    if (provider.error != null) {
-      showErrorSnackBar(context, provider.error!);
-      provider.clearError();
+    if (_provider.error != null) {
+      showErrorSnackBar(context, _provider.error!);
+      _provider.clearError();
     }
   }
 
   @override
   void dispose() {
-    context.read<OrganizationProvider>().removeListener(_onProviderChange);
+    _provider.removeListener(_onProviderChange);
     super.dispose();
   }
 

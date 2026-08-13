@@ -2,6 +2,7 @@ import 'package:factrack_mobile/core/utils/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/bill_card.dart';
+import 'bill_create_screen.dart';
 import 'bill_provider.dart';
 import 'bill_model.dart';
 
@@ -39,6 +40,13 @@ class _BillsScreenState extends State<BillsScreen> with SingleTickerProviderStat
     final provider = context.watch<BillProvider>();
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const BillCreateScreen()),
+        ),
+        child: const Icon(Icons.add),
+      ),
       appBar: AppBar(
         title: const Text('Factures', style: TextStyle(fontWeight: FontWeight.bold)),
         bottom: PreferredSize(
