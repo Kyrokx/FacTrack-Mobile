@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:open_filex/open_filex.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../core/api_client.dart';
 import 'bill_model.dart';
 
@@ -40,4 +44,23 @@ class BillService {
       throw Exception(message);
     }
   }
+
+  static Future<void> exportPdf({String? type, String? year}) async {
+    final queryParams = <String, dynamic>{};
+    if (type != null) queryParams['type'] = type;
+    if (year != null) queryParams['year'] = year;
+
+    final response = await ApiClient.dio.get(
+      '/bills/export/pdf/',
+      queryParameters: queryParams.isNotEmpty ? queryParams : null,
+      options: Options(responseType: ResponseType.bytes),
+    );
+
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File('${dir.path}/factrack_factures.pdf');
+    await file.writeAsBytes(response.data);
+
+    await OpenFilex.open(file.path);
+  }
+
 }

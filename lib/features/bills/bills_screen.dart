@@ -5,6 +5,7 @@ import '../../widgets/bill_card.dart';
 import 'bill_create_screen.dart';
 import 'bill_provider.dart';
 import 'bill_model.dart';
+import 'bill_service.dart';
 
 class BillsScreen extends StatefulWidget {
   const BillsScreen({super.key});
@@ -49,6 +50,22 @@ class _BillsScreenState extends State<BillsScreen> with SingleTickerProviderStat
       ),
       appBar: AppBar(
         title: const Text('Factures', style: TextStyle(fontWeight: FontWeight.bold)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.picture_as_pdf),
+            tooltip: 'Exporter en PDF',
+            onPressed: () async {
+              try {
+                final provider = context.read<BillProvider>();
+                await BillService.exportPdf(type: provider.typeFilter);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Erreur lors de l\'export PDF')),
+                );
+              }
+            },
+          ),
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(56),
           child: Padding(
