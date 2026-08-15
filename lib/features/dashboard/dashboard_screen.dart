@@ -1,7 +1,9 @@
 import 'package:factrack_mobile/core/app_theme.dart';
+import 'package:factrack_mobile/features/dashboard/price_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/bill_till.dart';
+import '../../widgets/section_card.dart';
 import '../../widgets/stats_card.dart';
 import '../../widgets/type_stats_card.dart';
 import 'dashboard_provider.dart';
@@ -138,7 +140,7 @@ class _DashboardBody extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        /*SectionCard(
+        SectionCard(
           children: [
             Text(
               'Évolution des dépenses',
@@ -153,7 +155,7 @@ class _DashboardBody extends StatelessWidget {
           ],
         ),
 
-        const SizedBox(height: 20),*/
+        const SizedBox(height: 20),
 
 
         // Dernières factures SONABEL

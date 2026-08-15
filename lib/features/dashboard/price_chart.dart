@@ -65,11 +65,12 @@ class PriceChart extends StatelessWidget {
                       final index = value.toInt();
                       if (value != index.toDouble()) return const SizedBox();
                       if (index < 0 || index >= periods.length) return const SizedBox();
-                      final parts = periods[index].split('-');
+                      if (index % 3 != 0) return const SizedBox(); // 1 label sur 3
+                      final parts = periods[index].split('/');
                       return Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                          '${parts[1]}/${parts[0].substring(2)}',
+                          '${parts[0]}/${parts[1].substring(2)}',
                           style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.tertiary),
                         ),
                       );
@@ -106,6 +107,9 @@ class PriceChart extends StatelessWidget {
   }
 
   LineChartBarData _buildLine(List<double> prices, Color color) {
+    if (prices.isEmpty) {
+      return LineChartBarData(spots: const [], color: color);
+    }
     return LineChartBarData(
       spots: prices.asMap().entries.map((e) => FlSpot(e.key.toDouble(), e.value)).toList(),
       isCurved: true,
